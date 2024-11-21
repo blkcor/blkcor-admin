@@ -1,7 +1,12 @@
 <template>
   <div>
     <component :is="Icon" :icon="iconRef" class="text-sky text-3xl"></component>
-    <svg-icon name="activity" class="text-red w-10 h-10"</svg-icon>
+    <svg-icon name="activity" class="text-red w-10 h-10" />
+    <network-icon
+      class="text-3xl"
+      name="a-091_anquan"
+      url="//at.alicdn.com/t/c/font_4644311_n4nvf5ewys8.js"
+    />
   </div>
 </template>
 
