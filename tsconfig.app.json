@@ -18,6 +18,7 @@
     },
     "types": ["element-plus/global"],
     "moduleResolution": "Bundler",
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "resolveJsonModule": true
   }
 }

@@ -1,19 +1,27 @@
 <template>
-  <div>home</div>
-  <div class="mb-4">
-    <el-button>Default</el-button>
-    <el-button type="primary">Primary</el-button>
-    <el-button type="success">Success</el-button>
-    <el-button type="info">Info</el-button>
-    <el-button type="warning">Warning</el-button>
-    <el-button type="danger">Danger</el-button>
+  <div>
+    <component :is="Icon" :icon="iconRef" class="text-sky text-3xl"></component>
+    <svg-icon name="activity" class="text-red w-10 h-10"</svg-icon>
   </div>
 </template>
 
 <script setup lang="ts">
 import { registerSW } from 'virtual:pwa-register'
+import { Icon, addAPIProvider } from '@iconify/vue'
+import academicons from '@iconify/json/json/academicons.json'
 
-onMounted(() => {
+console.log(academicons)
+const icons = Object.keys(academicons.icons)
+const iconRef = ref('')
+
+addAPIProvider('local', {
+  resources: ['http://localhost:5173']
+})
+
+onMounted(async () => {
+  setInterval(() => {
+    iconRef.value = '@local:' + 'academicons:' + icons[Math.floor(Math.random() * icons.length)]
+  }, 1000)
   registerSW({
     immediate: true,
     onRegisteredSW(_url, registration) {
