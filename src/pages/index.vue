@@ -7,6 +7,7 @@
       name="a-091_anquan"
       url="//at.alicdn.com/t/c/font_4644311_n4nvf5ewys8.js"
     />
+    <icon-list />
   </div>
 </template>
 
