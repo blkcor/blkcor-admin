@@ -10,22 +10,11 @@
     <el-switch v-model="showText" size="large" active-text="显示文字" inactive-text="隐藏文字" />
     <el-checkbox label="复制icon组件" v-model="copyIconComponent" />
   </div>
-  <ul class="flex flex-wrap border rounded">
-    <li
-      class="flex flex-col gap-2 w-1/8 border-r border-b items-center justify-center cursor-pointer hover:bg-sky-100 py-4"
-      v-for="icon in ep"
-      :key="icon"
-      @click="handleCopyIcon(icon)"
-    >
-      <component class="text-3xl" :is="Icon" :icon="`ep-${icon}`" />
-      <span v-if="showText" class="text-sm">{{ toPascalCase(icon) }}</span>
-    </li>
-  </ul>
+  <IconListComp :show-text="showText" @click="handleCopyIcon" />
 </template>
 
 <script setup lang="ts">
-import { Icon, loadIcons, loadIcon, type IconifyIcon } from '@iconify/vue'
-import ep from '@/components/icon-ep.json'
+import { loadIcon, type IconifyIcon } from '@iconify/vue'
 
 const { copy, copied } = useClipboard()
 
@@ -36,7 +25,7 @@ const showText = ref(true)
 const copyIconComponent = ref(false)
 
 async function handleCopyIcon(icon: string) {
-  if (copyIconComponent) {
+  if (copyIconComponent.value) {
     const copyText = `<i class="i-ep-${icon}" />`
     copy(copyText)
     copied && ElMessage.success('复制成功')
@@ -51,12 +40,6 @@ async function handleCopyIcon(icon: string) {
       copied && ElMessage.success('复制成功')
     }
   }
-}
-function toPascalCase(str: string) {
-  return str
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join('')
 }
 
 function toSvgIcon(svg: Required<IconifyIcon>): string {
@@ -81,10 +64,6 @@ function toSvgIcon(svg: Required<IconifyIcon>): string {
     </svg>`
   return svgElement
 }
-
-onBeforeMount(() => {
-  loadIcons(ep)
-})
 </script>
 
 <style scoped></style>

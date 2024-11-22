@@ -11,6 +11,7 @@ declare module 'vue' {
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     IconList: typeof import('./src/components/IconList.vue')['default']
+    IconListComp: typeof import('./src/components/IconListComp.vue')['default']
     NetworkIcon: typeof import('./src/components/NetworkIcon.vue')['default']
     ReloadPrompt: typeof import('./src/components/ReloadPrompt.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
