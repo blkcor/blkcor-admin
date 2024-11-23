@@ -26,12 +26,12 @@ const copyIconComponent = ref(false)
 
 async function handleCopyIcon(icon: string) {
   if (copyIconComponent.value) {
-    const copyText = `<i class="i-ep-${icon}" />`
+    const copyText = `<i class="i-${icon}" />`
     copy(copyText)
     copied && ElMessage.success('复制成功')
   } else {
     if (copyTypeFlag.value) {
-      const svg = await loadIcon(`ep-${icon}`)
+      const svg = await loadIcon(`${icon}`)
       const svgIcon = toSvgIcon(svg)
       copy(svgIcon)
       copied && ElMessage.success('复制成功')
