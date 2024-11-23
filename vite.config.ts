@@ -48,7 +48,7 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()]
     }),
     Components({
-      directoryAsNamespace: true,
+      directoryAsNamespace: false,
       collapseSamePrefixes: true,
       resolvers: [ElementPlusResolver()]
     }),

@@ -10,7 +10,10 @@
       @click="handleCopyIcon(`${collection}-${icon}`, index)"
     >
       <component
-        :class="[iconClass, { [activeClass]: choose === index }]"
+        :class="[
+          iconClass,
+          { [activeClass]: model ? model == `${collection}-${icon}` : choose === index }
+        ]"
         :is="Icon"
         :icon="`${collection}-${icon}`"
       />
@@ -21,20 +24,16 @@
 
 <script setup lang="ts">
 import { Icon, loadIcons } from '@iconify/vue'
-import data from '@/components/icon-ep.json'
+import data from '@/components/icons/icon-ep.json'
+import type { IconListType } from './type'
 
 const choose = ref(-1)
 // true => copy svg data
 // false => copy icon name
-interface IconListType {
-  iconData?: string[]
-  collection?: string
-  itemClass?: string
-  iconClass?: string
-  activeClass?: string
-  showText?: boolean
-}
+
 const emits = defineEmits(['click'])
+
+const model = defineModel()
 
 const props = withDefaults(defineProps<IconListType>(), {
   iconData: () => data,
